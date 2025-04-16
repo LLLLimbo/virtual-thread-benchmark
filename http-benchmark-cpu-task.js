@@ -22,18 +22,6 @@ export const options = {
 const BASE_URL = 'http://172.25.16.154:8080';
 
 export default function() {
-    const ioRes = http.get(`${BASE_URL}/io_task`);
-    check(ioRes, {
-        'io-status-200': (r) => r.status === 200,
-    });
-    responseTrend.add(ioRes.timings.duration);
-
-    if (ioRes.status === 200) {
-        successCounter.add(1);
-    } else {
-        errorRate.add(1);
-    }
-
     const computeRes = http.get(`${BASE_URL}/cpu_task`);
     check(computeRes, {
         'compute-status-200': (r) => r.status === 200,
@@ -45,19 +33,6 @@ export default function() {
     } else {
         errorRate.add(1);
     }
-
-    const reactiveComputeRes = http.get(`${BASE_URL}/reactive/cpu_task`);
-    check(computeRes, {
-        'reactive-compute-status-200': (r) => r.status === 200,
-    });
-    responseTrend.add(reactiveComputeRes.timings.duration);
-
-    if (reactiveComputeRes.status === 200) {
-        successCounter.add(1);
-    } else {
-        errorRate.add(1);
-    }
-
     // 模拟用户思考时间
     sleep(1);
 }

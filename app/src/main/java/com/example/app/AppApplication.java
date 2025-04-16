@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -59,6 +61,25 @@ public class AppApplication {
         logger.info("cpu_task");
         return "cpu_task";
     }
+
+    @GetMapping("/reactive/io_task")
+    public Mono<String> reactiveIoTask() {
+        return Mono.delay(Duration.ofMillis(300))
+                .doOnNext(i -> logger.info("reactive_io_task"))
+                .map(i -> "reactive_io_task");
+    }
+
+    @GetMapping("/reactive/cpu_task")
+    public Mono<String> reactiveCpuTask() {
+        return Mono.fromCallable(() -> {
+            for (int i = 0; i < 100; i++) {
+                int tmp = i * i * i;
+            }
+            logger.info("reactive_cpu_task");
+            return "reactive_cpu_task";
+        });
+    }
+
 
     @GetMapping("/random_sleep")
     public String random_sleep() throws InterruptedException {

@@ -34,30 +34,6 @@ export default function() {
         errorRate.add(1);
     }
 
-    const computeRes = http.get(`${BASE_URL}/cpu_task`);
-    check(computeRes, {
-        'compute-status-200': (r) => r.status === 200,
-    });
-    responseTrend.add(computeRes.timings.duration);
-
-    if (computeRes.status === 200) {
-        successCounter.add(1);
-    } else {
-        errorRate.add(1);
-    }
-
-    const reactiveComputeRes = http.get(`${BASE_URL}/reactive/cpu_task`);
-    check(computeRes, {
-        'reactive-compute-status-200': (r) => r.status === 200,
-    });
-    responseTrend.add(reactiveComputeRes.timings.duration);
-
-    if (reactiveComputeRes.status === 200) {
-        successCounter.add(1);
-    } else {
-        errorRate.add(1);
-    }
-
     // 模拟用户思考时间
     sleep(1);
 }
