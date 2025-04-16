@@ -15,7 +15,7 @@
 3. Send requests with [k6](https://k6.io/):
 
     ```bash
-   k6 run --vus 1000 --duration 300s http-benchmark.js
+   k6 run http-benchmark.js
    ```
 
 4. Check predefined dashboard ```Spring Boot Observability``` on Grafana [http://localhost:3000/](http://localhost:3000/) and login with default account ```admin``` and password ```admin```

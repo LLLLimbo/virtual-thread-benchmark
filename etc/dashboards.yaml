@@ -16,3 +16,11 @@ providers:
   editable: true
   options:
     path: '/etc/grafana/dashboards'
+- name: 'Spring Boot Statics'
+  orgId: 1
+  folder: ''
+  type: 'file'
+  disableDeletion: true
+  editable: true
+  options:
+    path: '/etc/grafana/dashboards'
