@@ -61,7 +61,7 @@ services:
     environment:
       - TARGET_ONE_HOST=app-b
       - TARGET_TWO_HOST=app-c
-      - SPRING_THREADS_VIRTUAL_ENABLED=false
+      - SPRING_THREADS_VIRTUAL_ENABLED=true
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://tempo:4317 # send traces to Tempo
       - OTEL_EXPORTER_OTLP_PROTOCOL=grpc # use gRPC for OTLP
       - OTEL_SERVICE_NAME=app-a # service name for Span

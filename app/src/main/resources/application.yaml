@@ -20,4 +20,4 @@ logging:
 spring:
   threads:
     virtual:
-      enabled: false
+      enabled: true
