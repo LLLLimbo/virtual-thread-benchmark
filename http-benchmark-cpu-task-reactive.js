@@ -23,7 +23,7 @@ const BASE_URL = 'http://172.25.16.154:8080';
 
 export default function() {
     const reactiveComputeRes = http.get(`${BASE_URL}/reactive/cpu_task`);
-    check(computeRes, {
+    check(reactiveComputeRes, {
         'reactive-compute-status-200': (r) => r.status === 200,
     });
     responseTrend.add(reactiveComputeRes.timings.duration);
