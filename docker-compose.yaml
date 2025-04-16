@@ -57,7 +57,7 @@ services:
 
   app-a:
     # build: ./app/
-    image: 706425357/virtual-threads-benchmark:latest
+    image: 706725357/virtual-threads-benchmark:latest
     environment:
       - TARGET_ONE_HOST=app-b
       - TARGET_TWO_HOST=app-c
