@@ -8,9 +8,9 @@ const successCounter = new Counter('success_counter');
 
 export const options = {
     stages: [
-        { duration: '30s', target: 100 },  // 预热
-        { duration: '1m', target: 500 },   // 逐步增加负载
-        { duration: '2m', target: 1000 },  // 稳定负载
+        { duration: '30s', target: 500 },  // 预热
+        { duration: '1m', target: 1500 },   // 逐步增加负载
+        { duration: '2m', target: 3000 },  // 稳定负载
         { duration: '30s', target: 0 },   // 降低负载
     ],
     thresholds: {
