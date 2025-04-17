@@ -19,6 +19,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Executors;
 
 @RestController
 @EnableCaching
@@ -95,13 +96,26 @@ public class AppApplication {
     }
 
     @GetMapping("/chain")
-    public String chain() throws IOException {
+    public String chain() {
         logger.debug("chain is starting");
-        Request.Get("https://httpbin.org/anything")
-                .execute().returnContent();
-        logger.debug("chain is finished");
+        try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+            String content = executor.submit(() -> {
+                try {
+                    return Request.Get("https://jsonplaceholder.typicode.com/todos/1")
+                            .connectTimeout(1000)
+                            .socketTimeout(1000)
+                            .execute().returnContent().asString();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }).get(3000, java.util.concurrent.TimeUnit.MILLISECONDS);
+
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
         return "chain";
     }
+
 
     @GetMapping("/error_test")
     public String error_test() throws Exception {
