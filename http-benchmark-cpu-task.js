@@ -19,7 +19,7 @@ export const options = {
     },
 };
 
-const BASE_URL = 'http://172.25.16.154:8080';
+const BASE_URL = 'http://172.16.100.214:8080';
 
 export default function() {
     const computeRes = http.get(`${BASE_URL}/cpu_task`);
