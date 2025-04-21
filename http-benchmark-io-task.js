@@ -9,9 +9,9 @@ const successCounter = new Counter('success_counter');
 export const options = {
     stages: [
         { duration: '30s', target: 500 },  // 预热
-        { duration: '1m', target: 1500 },   // 逐步增加负载
-        { duration: '2m', target: 3000 },  // 稳定负载
-        { duration: '30s', target: 0 },   // 降低负载
+        { duration: '1m', target: 50000 },   // 逐步增加负载
+        { duration: '2m', target: 100000 },  // 稳定负载
+        { duration: '3m', target: 200000 },   // 降低负载
     ],
     thresholds: {
         'http_req_duration': ['p(95)<500'], // 95%的请求应该低于500ms
